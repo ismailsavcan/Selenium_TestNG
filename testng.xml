@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="All Test Suite" parallel="methods" thread-count="1">
+    <test name="Selenium_TestNg_Java">
+        <classes>
+            <class name="com.selenium_testng_java.tests.QaCartTest">
+                <methods>
+                    <include name="TestUI"/>
+                    <include name="TestAPIUI"/>
+                    <include name="TestUIAPIUI"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+</suite>
