@@ -3,7 +3,11 @@ package com.selenium_testng_java.pages;
 import org.openqa.selenium.Cookie;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chromium.HasCdp;
 import org.openqa.selenium.support.FindBy;
+
+import java.util.HashMap;
+import java.util.Map;
 
 import static org.testng.Assert.assertEquals;
 import static org.testng.AssertJUnit.assertTrue;
@@ -68,9 +72,15 @@ public class ToDoPage extends BasePage {
 
     public LoginPage addCookie(String accessToken, WebDriver driver, String url, String todoURL){
         navigateTo_URL(url);
-        Cookie cookie = new Cookie("access_token", accessToken);
-        driver.manage().addCookie(cookie);
-        navigateTo_URL(todoURL);
+        Map<String, Object> cookie = new HashMap<>();
+        cookie.put("name", "accessToken");
+        cookie.put("value", accessToken);
+        cookie.put("domain", todoURL);
+        cookie.put("secure", true);
+
+        ((HasCdp) driver).executeCdpCommand("Network.setCookie", cookie);
+
+        driver.get(todoURL);
         return new LoginPage(driver);
     }
 

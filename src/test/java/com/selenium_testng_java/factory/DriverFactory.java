@@ -11,46 +11,47 @@ import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.safari.SafariDriver;
 import org.openqa.selenium.safari.SafariOptions;
 import com.selenium_testng_java.utils.ConfigurationReaderFile;
+import org.testng.annotations.Optional;
+import org.testng.annotations.Parameters;
 
 public class DriverFactory {
 
-
-    private DriverFactory() {}
-
+    private DriverFactory() {
+    }
     public static WebDriver createDriver() {
-        WebDriver driver=null;
-        String browser= ConfigurationReaderFile.get("browser");
-            switch (browser) {
-                case "chrome" -> {
-                    ChromeOptions options = new ChromeOptions();
-                    options.addArguments("--remote-allow-origins=*");
-                    options.setPageLoadStrategy(PageLoadStrategy.NORMAL);
-                    driver = new ChromeDriver(options);
-                }
-                case "chrome-headless" -> {     // headless : invisible chrome, your test will be executed.
-                    ChromeOptions options = new ChromeOptions();
-                    options.addArguments("--headless=new");
-                    options.addArguments("--start-maximized");
-                    driver = new ChromeDriver(options);
-                }
-                case "firefox" -> {
-                    FirefoxOptions options = new FirefoxOptions();
-                    driver = new FirefoxDriver(options);
-                }
-                case "firefox-headless" -> {
-                    FirefoxOptions options = new FirefoxOptions();
-                    driver = new FirefoxDriver(options.addArguments("--headless=new"));
-                }
-                case "edge" -> {
-                    EdgeOptions options = new EdgeOptions();
-                    driver = new EdgeDriver(options);
-                }
-                case "safari" -> {
-                    SafariOptions options = new SafariOptions();
-                    driver = new SafariDriver(options);
-                }
-                default -> throw new IllegalStateException("Unexpected value: " + browser);
+        WebDriver driver = null;
+       String browser = ConfigurationReaderFile.get("browser");
+        switch ( browser) {
+            case "chrome" -> {
+                ChromeOptions options = new ChromeOptions();
+                options.addArguments("--remote-allow-origins=*");
+                options.setPageLoadStrategy(PageLoadStrategy.NORMAL);
+                driver = new ChromeDriver(options);
             }
+            case "chrome-headless" -> {     // headless : invisible chrome, your test will be executed.
+                ChromeOptions options = new ChromeOptions();
+                options.addArguments("--headless=new");
+                options.addArguments("--start-maximized");
+                driver = new ChromeDriver(options);
+            }
+            case "firefox" -> {
+                FirefoxOptions options = new FirefoxOptions();
+                driver = new FirefoxDriver(options);
+            }
+            case "firefox-headless" -> {
+                FirefoxOptions options = new FirefoxOptions();
+                driver = new FirefoxDriver(options.addArguments("--headless=new"));
+            }
+            case "edge" -> {
+                EdgeOptions options = new EdgeOptions();
+                driver = new EdgeDriver(options);
+            }
+            case "safari" -> {
+                SafariOptions options = new SafariOptions();
+                driver = new SafariDriver(options);
+            }
+            default -> throw new IllegalStateException("Unexpected value: " + browser);
+        }
         return driver;
     }
 }
