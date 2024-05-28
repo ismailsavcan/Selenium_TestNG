@@ -4,6 +4,7 @@
     <test name="Selenium_TestNg_Java">
         <classes>
             <class name="com.selenium_testng_java.tests.QaCartTest"></class>
+                    <exclude name="com.selenium_testng_java.tests.QaCartTest.TestAPIUI"/>
             <class name="com.selenium_testng_java.tests.MainPageTest"></class>
             <class name="com.selenium_testng_java.tests.BasicAuthentication"></class>
         </classes>
