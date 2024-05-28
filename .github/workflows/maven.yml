@@ -1,9 +1,7 @@
-name: Java CI with Maven
+name: Allure Report Generation
 
 on:
   push:
-    branches: [ "master" ]
-  pull_request:
     branches: [ "master" ]
 
 jobs:
@@ -29,3 +27,8 @@ jobs:
       - name: Build with Maven
         run: mvn -B package --file pom.xml
 
+      - name: Generate Allure report
+        uses: marketplace/actions/allure-report@v0.1.0
+        with:
+          results-dir: allure-results
+          report-dir: allure-report
