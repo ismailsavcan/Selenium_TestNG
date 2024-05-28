@@ -30,7 +30,7 @@ jobs:
         run: mvn -B package --file pom.xml
 
       - name: Generate Allure report
-        uses: marketplace/actions/allure-report@v0.1.0
+        uses: fescobar/allure-docker-service@v1
         with:
-          results-dir: allure-results
-          report-dir: allure-report
+          results-path: allure-results
+          report-path: allure-report
