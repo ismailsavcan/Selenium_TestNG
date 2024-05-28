@@ -28,6 +28,12 @@ jobs:
 
       - name: Build with Maven
         run: mvn -B package --file pom.xml
+      - name: Get Allure history
+        uses: actions/checkout@v2
+        continue-on-error: true
+        with:
+          ref: gh-pages
+          path: gh-pages
 
       - name: Allure Report action from marketplace
         uses: simple-elf/allure-report-action@master
